@@ -21,13 +21,20 @@ public class Status {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args)
-    {
-    Scanner in =new Scanner(System.in);
-    System.out.println("Enter the user status code (zero,one,two,three) in string");
-    String code = in.next();
-    StausUser t= new StausUser();
-    t.statusDetail(code); 
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the user status code (REJECTED, PENDING, PROCESSING, APPROVED):");
+        String code = in.next().toUpperCase();
+
+        try 
+        {
+            NewCodeForStatusUser status = NewCodeForStatusUser.valueOf(code);
+            StausUser user = new StausUser();
+            user.statusDetail(status);
+        } 
+        catch (IllegalArgumentException e) 
+        {
+            System.out.println("NOT VALID CODE");
+        }
     }
-    
 }
